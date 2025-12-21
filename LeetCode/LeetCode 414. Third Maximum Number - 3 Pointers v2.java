@@ -1,32 +1,32 @@
 class Solution {
     public int thirdMax(int[] nums) {
-        Pair<Integer, Boolean> firstMax = new Pair<Integer, Boolean>(Integer.MIN_VALUE, false);
-        Pair<Integer, Boolean> secondMax = new Pair<Integer, Boolean>(Integer.MIN_VALUE, false);
-        Pair<Integer, Boolean> thirdMax = new Pair<Integer, Boolean>(Integer.MIN_VALUE, false);
+        Integer firstMax = null;
+        Integer secondMax = null;
+        Integer thirdMax = null;
 
         for(int num: nums){
-            if ((firstMax.getValue() && firstMax.getKey() == num) || 
-                (secondMax.getValue() && secondMax.getKey() == num) || 
-                (thirdMax.getValue() && thirdMax.getKey() == num)) {
+            if ((firstMax != null && firstMax == num) || 
+                (secondMax != null && secondMax == num) || 
+                (thirdMax != null && thirdMax == num)) {
                 continue;
             }
 
-            if(!firstMax.getValue() || num > firstMax.getKey()){
+            if(firstMax == null || num > firstMax){
                 thirdMax = secondMax;
                 secondMax = firstMax;
-                firstMax = new Pair<Integer, Boolean> (num, true);
-            }else if(!secondMax.getValue() || num > secondMax.getKey()){
+                firstMax = num;
+            }else if(secondMax == null || num > secondMax){
                 thirdMax = secondMax;
-                secondMax = new Pair<Integer, Boolean> (num, true);
-            }else if(!thirdMax.getValue() || num > thirdMax.getKey()){
-                thirdMax = new Pair<Integer, Boolean> (num, true);
+                secondMax = num;
+            }else if(thirdMax == null || num > thirdMax){
+                thirdMax = num;
             }
         }
 
-        if(!thirdMax.getValue()){
-            return firstMax.getKey();
+        if(thirdMax == null){
+            return firstMax;
         }
 
-        return thirdMax.getKey();
+        return thirdMax;
     }
 }
