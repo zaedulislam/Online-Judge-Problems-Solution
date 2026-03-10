@@ -1,9 +1,9 @@
 class OrderedStream {
-    int currentLowestId;
+    int currentIdKey;
     HashMap<Integer, String> hashMap;
 
     public OrderedStream(int n) {
-        this.currentLowestId = 1;
+        this.currentIdKey = 1;
         this.hashMap = new HashMap<>();
     }
     
@@ -12,10 +12,10 @@ class OrderedStream {
 
         hashMap.put(idKey, value);
 
-        if(idKey == currentLowestId){
-            while(hashMap.containsKey(currentLowestId)){
-                orderedStream.add(hashMap.get(currentLowestId));
-                currentLowestId++;
+        if(idKey == currentIdKey){
+            while(hashMap.containsKey(currentIdKey)){
+                orderedStream.add(hashMap.get(currentIdKey));
+                currentIdKey++;
             }
         }
 
